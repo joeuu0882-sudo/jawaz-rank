@@ -1,4 +1,4 @@
 User-agent: *
 Allow: /
 
-Sitemap: https://YOUR-DOMAIN/sitemap.xml
+Sitemap: https://joeuu0882-sudo.github.io/jawaz-rank/sitemap.xml
