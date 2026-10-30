@@ -251,21 +251,23 @@ function say(c){var a=k(A,c);function st(x,p){return x==='own'?T('ownc',[nm(p)])
  if(B)h+='<br>'+st(k(B,c),B)+' · '+T('pass',[nm(B)]);$('info').innerHTML=h}
 function pick(c){var o=c;c=c==='IL'?'PS':c;if(SELP)SELP.classList.remove('sel');if(paths[o]){SELP=paths[o];SELP.classList.add('sel')}say(c)}
 function cnt(el,to){if(matchMedia('(prefers-reduced-motion:reduce)').matches){el.textContent=to;return}var t0=performance.now();(function st(t){var x=Math.min(1,(t-t0)/800);el.textContent=Math.round(to*(1-Math.pow(1-x,3)));if(x<1)requestAnimationFrame(st)})(t0)}
- function updateCountrySEO(p){
-  var title,description;
+function updateCountrySEO(p){
+  var country = nm(p);
 
-  if(p==='MA'){
-    title='جواز المغرب | الترتيب العالمي ووجهات السفر - جواز رانك';
-    description='اكتشف قوة جواز السفر المغربي وترتيبه العالمي، وعدد الوجهات المتاحة بدون تأشيرة أو بتأشيرة عند الوصول أو إلكترونية، مع خريطة تفاعلية وشروط الدخول.';
-  }else{
-    title='جواز رانك | ترتيب جوازات السفر عالميًا';
-    description='اكتشف إلى أين يوصلك جوازك. خريطة عالمية تفاعلية وترتيب لجوازات دول العالم وشروط الدخول.';
-  }
+  var title = (LANG === 'ar' ? 'جواز ' : 'Passport of ')
+    + country + ' | JAWAZ RANK';
 
-  document.title=title;
-  document.querySelector('meta[name="description"]').content=description;
-  document.querySelector('meta[property="og:title"]').content=title;
-  document.querySelector('meta[property="og:description"]').content=description;
+  var description =
+    T('pass',[country]) + ' — ' +
+    T('dests',[SC[p]]) + '. ' +
+    T('rank',[RANK[p],CODES.length]) +
+    '. JAWAZ RANK.';
+
+  document.title = title;
+
+  document.querySelector('meta[name="description"]').content = description;
+  document.querySelector('meta[property="og:title"]').content = title;
+  document.querySelector('meta[property="og:description"]').content = description;
 }
 function show(p){
  A=p;B=null;F=null;
