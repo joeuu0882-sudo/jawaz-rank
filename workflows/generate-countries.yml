@@ -1,0 +1,37 @@
+name: Generate passport country pages
+
+on:
+  workflow_dispatch:
+  schedule:
+    - cron: "25 4 * * 1"
+  push:
+    paths:
+      - "scripts/generate-countries.js"
+      - ".github/workflows/generate-countries.yml"
+
+permissions:
+  contents: write
+
+jobs:
+  generate:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+      - name: Set up Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: 20
+      - name: Generate country pages
+        run: node scripts/generate-countries.js
+      - name: Commit generated pages
+        run: |
+          if [[ -n "$(git status --porcelain)" ]]; then
+            git config user.name "github-actions[bot]"
+            git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+            git add countries sitemap.xml
+            git commit -m "Generate passport country pages"
+            git push
+          else
+            echo "No generated changes."
+          fi
