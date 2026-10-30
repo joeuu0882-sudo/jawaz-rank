@@ -269,6 +269,7 @@ function cnt(el,to){if(matchMedia('(prefers-reduced-motion:reduce)').matches){el
 }
 function show(p){
  A=p;B=null;F=null;
+ updateCountrySEO(p);
  $('home').hidden=true;$('pp').hidden=false;window.scrollTo(0,0);
  $('fl').innerHTML=flag(p,'fl');$('pn').textContent=T('pass',[nm(p)]);
  $('rk').textContent=T('rank',[RANK[p],CODES.length]);
